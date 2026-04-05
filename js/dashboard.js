@@ -79,7 +79,7 @@ const mergedCampaigns = allCampaigns.map(c => {
 
 let myCampaigns = [];
 if (user) {
-    myCampaigns = allCampaigns.filter(c =>
+    myCampaigns = mergedCampaigns.filter(c =>
         c.creatorName.toLowerCase() === user.name.toLowerCase()
     );
 }
