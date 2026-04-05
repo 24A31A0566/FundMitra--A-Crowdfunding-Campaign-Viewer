@@ -90,7 +90,7 @@ if (!user) {
         <div class="dashboard-card">
             <h2>Please login to view or create your own campaigns</h2>
             <p class="demo-text">
-                For demo account login with username: DemoUser, password: DemoUser123
+                For demo account login with <br>username: <b>DemoUser</b>, password: <b>DemoUser123</b>
             </p>
         </div>
     `;
@@ -107,7 +107,7 @@ else if (myCampaigns.length === 0) {
                 Start Your First Campaign
             </button>
             <p class="demo-text">
-                For demo account login with username: DemoUser, password: DemoUser123
+                For demo account login with <br>username: <b>DemoUser</b>, password: <b>DemoUser123</b>
             </p>
         </div>
     `;
