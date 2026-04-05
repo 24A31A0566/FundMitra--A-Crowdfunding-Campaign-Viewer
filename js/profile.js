@@ -52,7 +52,7 @@ function goToProfile() {
 
 function logout() {
     localStorage.removeItem("loggedInUser");
-    window.location.href = "home.html";
+    window.location.href = "index.html";
 }
 
 /* PROFILE DATA */
@@ -119,14 +119,25 @@ document.getElementById("donation-count").textContent = contributions.length;
 document.getElementById("total-amount").textContent   = "₹" + totalAmount;
 
 /* EDIT MODAL — OPEN */
-document.querySelector(".edit-btn").addEventListener("click", () => {
-    document.getElementById("edit-modal").classList.remove("hidden");
+const editBtn = document.querySelector(".edit-btn");
 
-    document.getElementById("edit-name").value     = user?.name     || "";
-    document.getElementById("edit-email").value    = user?.email    || "";
-    document.getElementById("edit-contact").value  = user?.contact  || "";
-    document.getElementById("edit-location").value = user?.location || "";
-});
+if (user?.username === "DemoUser") {
+    editBtn.disabled = true;
+    editBtn.textContent = "Edit Profile";
+    editBtn.style.background = "#eee";
+    editBtn.style.borderColor = "#2d604d";
+	editBtn.style.color = "#2d604d";
+    editBtn.style.cursor = "not-allowed";
+} else {
+    editBtn.addEventListener("click", () => {
+        document.getElementById("edit-modal").classList.remove("hidden");
+
+        document.getElementById("edit-name").value     = user?.name     || "";
+        document.getElementById("edit-email").value    = user?.email    || "";
+        document.getElementById("edit-contact").value  = user?.contact  || "";
+        document.getElementById("edit-location").value = user?.location || "";
+    });
+}
 
 /* EDIT MODAL — CLOSE */
 function closeModal() {
@@ -207,5 +218,7 @@ function goToCampaigns() {
 }
 
 function viewCampaign(id) {
-    window.location.href = `campaigndetails.html?id=${id}`;
+    const allCampaigns = [...campaigns, ...JSON.parse(localStorage.getItem("userCampaigns") || "[]")];
+    const exists = allCampaigns.find(c => String(c.id) === String(id));
+    window.location.href = exists ? `campaigndetails.html?id=${id}` : `campaigndetails.html?id=-1`;
 }
