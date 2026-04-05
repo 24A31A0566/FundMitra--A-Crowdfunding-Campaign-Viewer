@@ -37,39 +37,43 @@
 </div>
 <!-- CREATE CAMPAIGN MODAL -->
 <div id="campaignModal" class="modal-overlay">
-
     <div class="modal-box">
         <form id="campaignForm">
-
-            <input type="text" id="title" placeholder="Title *" required>
-
-			<select id="category" required>
-				<option value="">Select Category</option>
-				<option value="Health">Health</option>
-				<option value="Education">Education</option>
-				<option value="Social">Social</option>
-				<option value="Emergency">Emergency</option>
-				<option value="Environment">Environment</option>
-				<option value="Creative">Creative</option>
-				<option value="Innovation">Innovation</option>
-				<option value="Other">Other</option>
-			</select>
-
-            <textarea id="shortDescription" placeholder="Short Description *" required></textarea>
-
-            <textarea id="fullDescription" placeholder="Full Description"></textarea>
-
-            <input type="text" id="image" placeholder="Image URL">
-
-            <input type="number" id="goalAmount" placeholder="Goal Amount *" required>
-
-            <input type="number" id="duration" placeholder="Campaign Duration (days) *" required>
-
+            <label for="title">Title <span class="required">*</span></label>
+            <input type="text" id="title" placeholder="Enter campaign title" required>
+            
+            <label for="category">Category <span class="required">*</span></label>
+            <select id="category" required>
+                <option value="">Select Category</option>
+                <option value="Health">Health</option>
+                <option value="Education">Education</option>
+                <option value="Social">Social</option>
+                <option value="Emergency">Emergency</option>
+                <option value="Environment">Environment</option>
+                <option value="Creative">Creative</option>
+                <option value="Innovation">Innovation</option>
+                <option value="Other">Other</option>
+            </select>
+            
+            <label for="shortDescription">Short Description <span class="required">*</span></label>
+            <textarea id="shortDescription" placeholder="Brief summary (1-2 sentences)" required></textarea>
+            
+            <label for="fullDescription">Full Description</label>
+            <textarea id="fullDescription" placeholder="Detailed campaign description (optional)"></textarea>
+            
+            <label for="image">Image URL</label>
+            <input type="text" id="image" placeholder="https://example.com/image.jpg (optional)">
+            
+            <label for="goalAmount">Goal Amount <span class="required">*</span></label>
+            <input type="number" id="goalAmount" placeholder="Enter target amount in ₹" required>
+            
+            <label for="duration">Campaign Duration <span class="required">*</span></label>
+            <input type="number" id="duration" placeholder="Number of days" required>
+            
             <div class="modal-actions">
                 <button type="submit" class="create-btn">Confirm</button>
                 <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
             </div>
-
         </form>
     </div>
 </div>
