@@ -10,6 +10,14 @@ let storedCampaigns = JSON.parse(localStorage.getItem("userCampaigns")) || [];
 let showMyCampaigns = false;
 
 let allCampaigns = [...campaigns, ...storedCampaigns];
+const campaignOverrides = JSON.parse(localStorage.getItem("campaignOverrides")) || {};
+allCampaigns = allCampaigns.map(c => {
+    if (campaignOverrides[c.id]) {
+        return { ...c, ...campaignOverrides[c.id] };
+    }
+    return c;
+});
+
 
 if (user) {
     document.getElementById("my-campaigns-btn").style.display = "block";
@@ -114,7 +122,7 @@ function renderCampaigns(data) {
 
                     <div>
                         <strong>${campaign.backers}</strong>
-                        <p>BACKERS</p>
+                        <p>DONORS</p>
                     </div>
 
                     <div>
