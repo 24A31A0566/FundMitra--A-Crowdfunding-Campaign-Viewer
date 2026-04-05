@@ -69,6 +69,14 @@ const dashboard = document.getElementById("dashboard-content");
 const userCampaigns = JSON.parse(localStorage.getItem("userCampaigns")) || [];
 const allCampaigns = [...campaigns, ...userCampaigns];
 
+const campaignOverrides = JSON.parse(localStorage.getItem("campaignOverrides")) || {};
+const mergedCampaigns = allCampaigns.map(c => {
+    if (campaignOverrides[c.id]) {
+        return { ...c, ...campaignOverrides[c.id] };
+    }
+    return c;
+});
+
 let myCampaigns = [];
 if (user) {
     myCampaigns = allCampaigns.filter(c =>
@@ -140,7 +148,7 @@ else {
                 </div>
                 <div class="summary-card">
                     <h3>${totalBackers}</h3>
-                    <p>Total Backers</p>
+                    <p>Total Donors</p>
                 </div>
                 <div class="summary-card">
                     <h3>${activeCampaigns}</h3>
@@ -171,7 +179,7 @@ else {
                             <th>Category</th>
                             <th>Raised</th>
                             <th>Funded</th>
-                            <th>Backers</th>
+                            <th>Donors</th>
                             <th>Days Left</th>
                             <th>Status</th>
                             <th>Actions</th>
