@@ -84,7 +84,42 @@ function saveCampaignState() {
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
-let campaign = allCampaigns.find(c => c.id == id) || allCampaigns[0];
+let campaign = allCampaigns.find(c => c.id == id);
+
+if (!campaign || id == -1) {
+    document.getElementById("dashboard-content")?.remove();
+    document.querySelector(".details-wrapper").innerHTML = `
+        <div style="
+            max-width: 500px;
+            margin: 80px auto;
+            text-align: center;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 40px 30px;
+        ">
+            <p style="font-size: 22px; font-weight: bold; color: var(--dark); margin-bottom: 10px;">
+                This campaign no longer exists
+            </p>
+            <p style="font-size: 14px; color: #888; margin-bottom: 25px;">
+                It may have been removed by the creator or is unavailable.
+            </p>
+            <button onclick="window.location.href='campaigns.html'" style="
+                padding: 10px 24px;
+                background: var(--primary);
+                color: white;
+                border: none;
+                border-radius: 50px;
+                font-size: 14px;
+                cursor: pointer;
+            ">
+                Explore Other Campaigns
+            </button>
+        </div>
+    `;
+    // stop all further script execution for this page
+    throw new Error("Campaign not found");
+}
 
 /* STATUS */
 let status = "Active";
